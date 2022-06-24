@@ -52,8 +52,8 @@
             <!-- First Class Start -->
             <div class="input-group f-class">
                 <div>
-                    <label for="">First Class ($150)</label>
-                    <input id="input-value" class="inp-style inp-width" type="number" name="" value="0">
+                    <label for="">First Class ($<span id="first-price">150</span>)</label>
+                    <input id="input-value" class="inp-style inp-width" type="number" name="" value="1">
                 </div>
                 <div class="plus-minus-btn">
                     <p> <span onclick="handleFirstClass(true)" class="pointer">+</span> <span onclick="handleFirstClass(false)" class="pointer">-</span> </p>
@@ -63,8 +63,8 @@
             <!-- Economy Start -->
             <div class="input-group f-class">
                 <div>
-                    <label for="">Economy ($100)</label>
-                    <input id="eco-input-value" class="inp-style inp-width" type="number" name="" value="0">
+                    <label for="">Economy ($<span id="eco-price">100</span>)</label>
+                    <input id="eco-input-value" class="inp-style inp-width" type="number" name="" value="1">
                 </div>
                 <div class="plus-minus-btn">
                     <p> <span onclick="handleEcoClass(true)" class="pointer">+</span> <span onclick="handleEcoClass(false)" class="pointer">-</span> </p>
@@ -78,7 +78,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$<span id="sub-total">500</span></p>
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$<span id="tax">50</span></p>
                     </div>
                 </div>
                 <hr>
@@ -96,7 +96,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$<span id="total-price">550</span></p>
                     </div>
                 </div>
             </div>
@@ -121,6 +121,12 @@
                 newValue = inputValueNumber - 1;
             }
             inputValue.value = newValue;
+            
+            const newFirstPrice = newValue * 150;
+            document.getElementById('first-price').innerText = newFirstPrice;
+            calculatePrice();
+            
+
         }
 
 
@@ -135,6 +141,23 @@
                 newValue = inputValueNumber - 1;
             }
             inputValue.value = newValue;
+            const newFirstPrice = newValue * 100;
+            document.getElementById('eco-price').innerText = newFirstPrice;
+            calculatePrice();
+        }
+
+
+        function calculatePrice() {
+            const firstInput = document.getElementById('input-value');
+            const firstInputValue = parseInt(firstInput.value);
+            const ecoInput = document.getElementById('eco-input-value');
+            const ecoInputValue = parseInt(ecoInput.value);
+            const subTotal = firstInputValue * 150 + ecoInputValue * 100;
+            document.getElementById('sub-total').innerText = subTotal;
+            const tax = Math.round(subTotal * 0.1);
+            document.getElementById('tax').innerText = tax;
+            const totalPrice = subTotal + tax;
+            document.getElementById('total-price').innerText = totalPrice;
         }
     </script>
 
