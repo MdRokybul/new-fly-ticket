@@ -48,25 +48,30 @@
                     <input class="inp-style" type="date" name="">
                 </div>
             </div>
+
+            <!-- First Class Start -->
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="input-value" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p>+ -</p>
+                    <p> <span id="first-increase-button" class="pointer">+</span> <span id="first-decrease-button" class="pointer">-</span> </p>
                 </div>
             </div>
             
+            <!-- Economy Start -->
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
                     <input class="inp-style inp-width" type="number" name="">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
+                    <p> <span id="eco-increase-button" class="pointer">+</span> <span id="eco-decrease-button" class="pointer">-</span> </p>
                 </div>
             </div>
+
+
             <div class="calculations">
                 <div class="amount">
                     <div class="left">
@@ -103,6 +108,37 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
         </div>
     </section>
+
+    <script>
+        document.getElementById("first-increase-button").addEventListener("click", function(){
+            // const inputValue = document.getElementById('input-value');
+            // const inputValueNumber = parseInt(inputValue.value);
+            // const newValue = inputValueNumber + 1;
+            // inputValue.value = newValue;
+            handleFirstClass(true)
+        })
+
+        document.getElementById("first-decrease-button").addEventListener("click", function(){
+            // const inputValue = document.getElementById("input-value");
+            // const inputValueNumber = parseInt(inputValue.value);
+            // const newValue = inputValueNumber - 1;
+            // inputValue.value = newValue;
+            handleFirstClass(false)
+        })
+
+        function handleFirstClass(isIncrease) {
+            const inputValue = document.getElementById('input-value');
+            const inputValueNumber = parseInt(inputValue.value);
+            let newValue = inputValueNumber;
+            if (isIncrease == true) {
+                newValue = inputValueNumber + 1;
+            }
+            if (isIncrease == false && newValue > 0) {
+                newValue = inputValueNumber - 1;
+            }
+            inputValue.value = newValue;
+        }
+    </script>
 
     <!--Thank You-->
 </body>
