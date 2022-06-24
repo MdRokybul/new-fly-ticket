@@ -56,7 +56,7 @@
                     <input id="input-value" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span id="first-increase-button" class="pointer">+</span> <span id="first-decrease-button" class="pointer">-</span> </p>
+                    <p> <span onclick="handleFirstClass(true)" class="pointer">+</span> <span onclick="handleFirstClass(false)" class="pointer">-</span> </p>
                 </div>
             </div>
             
@@ -64,10 +64,10 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="eco-input-value" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span id="eco-increase-button" class="pointer">+</span> <span id="eco-decrease-button" class="pointer">-</span> </p>
+                    <p> <span onclick="handleEcoClass(true)" class="pointer">+</span> <span onclick="handleEcoClass(false)" class="pointer">-</span> </p>
                 </div>
             </div>
 
@@ -110,24 +110,22 @@
     </section>
 
     <script>
-        document.getElementById("first-increase-button").addEventListener("click", function(){
-            // const inputValue = document.getElementById('input-value');
-            // const inputValueNumber = parseInt(inputValue.value);
-            // const newValue = inputValueNumber + 1;
-            // inputValue.value = newValue;
-            handleFirstClass(true)
-        })
-
-        document.getElementById("first-decrease-button").addEventListener("click", function(){
-            // const inputValue = document.getElementById("input-value");
-            // const inputValueNumber = parseInt(inputValue.value);
-            // const newValue = inputValueNumber - 1;
-            // inputValue.value = newValue;
-            handleFirstClass(false)
-        })
-
         function handleFirstClass(isIncrease) {
             const inputValue = document.getElementById('input-value');
+            const inputValueNumber = parseInt(inputValue.value);
+            let newValue = inputValueNumber;
+            if (isIncrease == true) {
+                newValue = inputValueNumber + 1;
+            }
+            if (isIncrease == false && newValue > 0) {
+                newValue = inputValueNumber - 1;
+            }
+            inputValue.value = newValue;
+        }
+
+
+        function handleEcoClass(isIncrease) {
+            const inputValue = document.getElementById('eco-input-value');
             const inputValueNumber = parseInt(inputValue.value);
             let newValue = inputValueNumber;
             if (isIncrease == true) {
